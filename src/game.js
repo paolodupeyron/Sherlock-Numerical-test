@@ -4,8 +4,40 @@ let numbersTried = [];
 let buttn = document.createElement('button');
 buttn.innerHTML = 'Play Again';
 buttn.id = "play-again";
+
+
+// styling buttn
+
+// created div element
+let buttnDivEL = document.createElement('div');
+//stylying the div
+buttnDivEL.classList.add(
+    'flex',
+    'justify-center'
+)
+
+//adding buttn to div parent
+buttnDivEL.append(buttn)
+
+
+//button styling
+buttn.classList.add(
+    'bg-blue-600',
+    'text-white',
+    'font-bold',
+    'py-3',
+    'px-6',
+    'my-4',
+    'rounded-full',
+    'hover:bg-blue-700',
+    'shadow-md',
+    'hover:shadow-lg',
+    'transition-all',
+    'duration-300'
+);
+
 let div = document.querySelector('div');
-let playAgainBtn;
+let playAgainBtn; 
 let guessInput = document.getElementById("guess-input");
 let triedNumb;
 
@@ -36,7 +68,7 @@ function checkGuess() {
     if (guess === secretNumber) {
         displayMessage(`Congratulations! You guessed the number in ${attempts} attempts.`);
         document.getElementById("guess-button").disabled = true;
-        div.append(buttn);
+        div.append(buttnDivEL);
         playAgainBtn = document.getElementById('play-again');
         playAgainBtn.addEventListener("click", clearGame);
         updateAttemptsDisplay();
