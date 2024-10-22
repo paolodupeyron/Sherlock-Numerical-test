@@ -7,6 +7,8 @@ buttn.id = "play-again";
 let div = document.querySelector('div');
 let playAgainBtn;
 let guessInput = document.getElementById("guess-input");
+let triedNumb;
+
 
 
 
@@ -14,7 +16,7 @@ function checkGuess() {
 
     let guess = document.getElementById("guess-input").value.trim();
 
-    if (!/^\d+$/.test(guess)) {
+    if (!/^\d+$/.test(guess) || guess < 1 || guess > 100) {
         displayMessage("Please enter a valid whole number.");
         guessInput.value = "";
         return;
@@ -50,7 +52,9 @@ function checkGuess() {
         displayMessage("Too high! Try again.");
         guessInput.value = "";
         updateAttemptsDisplay();
+        
     }
+    triedNumb = document.getElementById("attempts-display");
 }
 
 function displayMessage(message) 
@@ -79,9 +83,16 @@ function clearGame (){
     secretNumber = Math.floor(Math.random() * 100) + 1;
     guessInput.value = "";
     playAgainBtn.remove();
-    updateAttemptsDisplay();
+    triedNumb.remove();
 
 }
 
 
+guessInput.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+      document.getElementById("guess-button").click();
+    }
+  });
+
 document.getElementById("guess-button").addEventListener("click", checkGuess);
+
